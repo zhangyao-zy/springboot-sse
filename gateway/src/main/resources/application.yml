@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: sse-service
+          uri: lb://sse-service
+          predicates:
+            - Path=/sse-service/**
+          filters:
+              # 校验
+              # 去除一个前缀
+            - StripPrefix=1

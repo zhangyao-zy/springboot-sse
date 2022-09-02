@@ -4,6 +4,7 @@ import com.zy.springbootsse.service.SseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +18,9 @@ public class SseMsgConsumer {
 
     private final SseService sseService;
 
-    @RabbitListener(queues = "test.queue")
+
+
+    @RabbitListener(queues = "#{queue.name}")
     public void consumerSseMsg(String data) {
         log.info(data);
         sseService.sendMsgToClient(null,null,data);

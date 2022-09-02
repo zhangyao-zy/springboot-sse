@@ -17,7 +17,7 @@
     if (!!window.EventSource) {
 
         // 建立连接
-        source = new EventSource('http://localhost:8080/sse/connect?userId='+userId);
+        source = new EventSource('http://localhost:8080/sse-service/sse/connect?userId='+userId);
 
         /**
          * 连接一旦建立，就会触发open事件
@@ -63,7 +63,7 @@
     function closeSse() {
         source.close();
         const httpRequest = new XMLHttpRequest();
-        httpRequest.open('GET', 'http://localhost:8080/sse/close/?userId='+userId, true);
+        httpRequest.open('GET', 'http://localhost:8080/sse-service/sse/close/?userId='+userId, true);
         httpRequest.send();
         console.log("close");
     }
